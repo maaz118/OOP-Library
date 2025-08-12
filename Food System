@@ -1,0 +1,70 @@
+category={
+    "apple" :70,
+    "banana":40,
+    "orange":30,
+    "grapes":20,
+    "mango" :100
+}
+cart={}
+def show_menu():
+    print("Your menu is!")
+    for item, price in category.items():
+        print(f"{item.title()} Rs: {price}")
+
+def add_cart():
+    item=input("Enter item:")
+    if item in category:
+        qty=int(input("Enter quantity:"))
+        if item in cart:
+            cart[item]+=qty
+        else:
+            cart[item]=qty
+        print(f"{qty} {item.title()} added to cart")
+
+def summ_cart():
+    print("Your cart")
+    total=0
+    for item,qty in cart.items():
+        price=category[item]*qty
+        print(f"{qty} {item.title()} Rs: {price}")
+        total+=price
+    print(f"Total Price is: {total}")
+
+def remove_cart():
+    item=input("Enter item you want to Remove:")
+    if item in cart:
+        del cart[item]
+        print(f"{item.title()} Removed")
+    else:
+        print("Item not found")
+
+def check_out():
+    apply_discount=input("Need Discount:")
+    total=sum(category[item]*qty
+    for item,qty in cart.items())
+    if apply_discount=="yes":
+        apply_discount=total*0.10
+        total-=apply_discount
+        print(f"Discount applied: {apply_discount}")
+    print(f"Final Amount Is Rs: {total}")
+
+def main():
+    while True:
+        print("Menu:")
+        print("1. View Menu")
+        print("2. Add Cart")
+        print("3. Sum Cart")
+        print("4. Remove Cart")
+        print("5. Checkout")
+        choice=input("Choose an option:")
+        if choice=="1":
+            show_menu()
+        elif choice=="2":
+            add_cart()
+        elif choice=="3":
+            summ_cart()
+        elif choice=="4":
+            remove_cart()
+        elif choice=="5":   
+            check_out()   
+main()
